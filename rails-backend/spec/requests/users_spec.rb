@@ -1,8 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Users API", type: :request do
-  let!(:user) {create(:user, email: "test@naver.com", password: "password", name: "test")}
+  let!(:user) { create(:user, email: "test@naver.com", password: "password", name: "test") }
 
+  let(:headers) do
+    {
+      "ACCEPT" => "application/json",
+      "Content-Type" => "application/json"
+    }
+  end
 
   it "正しい会員登録" do
     user_params = {
@@ -13,12 +19,11 @@ RSpec.describe "Users API", type: :request do
       }
     }
 
-    post "/users", params: user_params
+    post "/users.json", params: user_params.to_json, headers: headers
     body = JSON.parse(response.body)
-    
+
     expect(response).to have_http_status(:ok)
     expect(body["data"]["name"]).to eq("test")
-    
   end
 
   it 'EMAILなしの会員登録' do
@@ -29,7 +34,7 @@ RSpec.describe "Users API", type: :request do
       }
     }
 
-    post "/users", params: user_params
+    post "/users.json", params: user_params.to_json, headers: headers
     expect(response).to have_http_status(:unprocessable_entity)
   end
 
@@ -37,11 +42,11 @@ RSpec.describe "Users API", type: :request do
     user_params = {
       user: {
         email: "test@naver.com",
-        password: "password",
+        password: "password"
       }
     }
 
-    post "/users", params: user_params
+    post "/users.json", params: user_params.to_json, headers: headers
     expect(response).to have_http_status(:unprocessable_entity)
   end
 
@@ -49,11 +54,11 @@ RSpec.describe "Users API", type: :request do
     user_params = {
       user: {
         email: "test@naver.com",
-        password: "password",
+        name: "test"
       }
     }
 
-    post "/users", params: user_params
+    post "/users.json", params: user_params.to_json, headers: headers
     expect(response).to have_http_status(:unprocessable_entity)
   end
 
@@ -61,11 +66,11 @@ RSpec.describe "Users API", type: :request do
     user_params = {
       user: {
         email: "test@naver.com",
-        password: "password",
+        password: "password"
       }
     }
 
-    post "/users/sign_in", params: user_params
+    post "/users/sign_in.json", params: user_params.to_json, headers: headers
     body = JSON.parse(response.body)
 
     expect(response).to have_http_status(:ok)
@@ -76,11 +81,11 @@ RSpec.describe "Users API", type: :request do
     user_params = {
       user: {
         email: "test@naver.com",
-        password: "password11",
+        password: "wrongpassword"
       }
     }
 
-    post "/users/sign_in", params: user_params
+    post "/users/sign_in.json", params: user_params.to_json, headers: headers
     body = JSON.parse(response.body)
 
     expect(response).to have_http_status(:unauthorized)
@@ -90,11 +95,10 @@ RSpec.describe "Users API", type: :request do
   it '正しいログアウト' do
     sign_in user
 
-    delete "/users/sign_out"
+    delete "/users/sign_out.json", headers: headers
     body = JSON.parse(response.body)
 
     expect(response).to have_http_status(:ok)
-    expect(body["message"]).to eq('로그아웃 성공')
+    expect(body["message"]).to eq("로그아웃 성공")
   end
 end
-
