@@ -28,6 +28,7 @@
 
 <script setup>
 import axios from "axios";
+import api from "@/api";
 import { ref, onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
 
@@ -56,12 +57,12 @@ const tags = ref([]);
 
 onMounted(async () => {
   try {
-    const resTags = await axios.get("http://localhost:3000/tags", {
+    const resTags = await api.get("/tags", {
       withCredentials: true,
     });
     tags.value = resTags.data;
 
-    const res = await axios.get("http://localhost:3000/posts", {
+    const res = await api.get("/posts", {
       withCredentials: true,
     });
     console.log(res.data);
@@ -76,8 +77,8 @@ const goToWrite = () => {
 };
 
 const logout = () => {
-  axios
-    .delete("http://localhost:3000/users/sign_out", {
+  api
+    .delete("/users/sign_out", {
       withCredentials: true,
     })
     .then((response) => {

@@ -21,6 +21,7 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 
 import { useAuth } from "@/stores/auth";
+import api from "@/api";
 
 const auth = useAuth();
 
@@ -34,9 +35,9 @@ const goToHome = () => {
 };
 
 const submitForm = () => {
-  axios
+  api
     .post(
-      "http://localhost:3000/users/sign_in",
+      "/users/sign_in",
       {
         user: {
           email: inputEmail.value,

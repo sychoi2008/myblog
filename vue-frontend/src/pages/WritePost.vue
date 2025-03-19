@@ -22,7 +22,9 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+
 import { useRoute, useRouter } from "vue-router";
+import api from "@/api";
 
 const route = useRoute();
 const router = useRouter();
@@ -41,13 +43,13 @@ const goToHome = () => {
 
 onMounted(async () => {
   try {
-    const resTags = await axios.get("http://localhost:3000/tags", {
+    const resTags = await api.get("/tags", {
       withCredentials: true,
     });
     tags.value = resTags.data;
 
     if (postId) {
-      const resPost = await axios.get(`http://localhost:3000/posts/${postId}`, {
+      const resPost = await api.get(`/posts/${postId}`, {
         withCredentials: true,
       });
 
@@ -69,15 +71,15 @@ const submitPost = () => {
   };
 
   const request = postId
-    ? axios.patch(
-        `http://localhost:3000/posts/${postId}`,
+    ? api.patch(
+        `/posts/${postId}`,
         { post: postData },
         {
           withCredentials: true,
         }
       )
-    : axios.post(
-        "http://localhost:3000/posts",
+    : api.post(
+        "/posts",
         { post: postData },
         {
           withCredentials: true,

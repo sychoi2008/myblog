@@ -29,7 +29,9 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+
 import { useRouter } from "vue-router";
+import api from "@/api";
 
 const router = useRouter();
 
@@ -43,9 +45,9 @@ const goToHome = () => {
 };
 
 const submitForm = () => {
-  axios
+  api
     .post(
-      "http://localhost:3000/users",
+      "/users",
       {
         user: {
           email: inputEmail.value,

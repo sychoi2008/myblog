@@ -25,7 +25,9 @@
 </template>
 
 <script setup>
+import api from "@/api";
 import axios from "axios";
+
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -48,8 +50,8 @@ const goToEdit = () => {
 };
 
 const goToDelete = () => {
-  axios
-    .delete(`http://localhost:3000/posts/${postId}`, {
+  api
+    .delete(`/posts/${postId}`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -60,7 +62,7 @@ const goToDelete = () => {
 
 onMounted(async () => {
   try {
-    const res = await axios.get(`http://localhost:3000/posts/${postId}`, {
+    const res = await api.get(`/posts/${postId}`, {
       withCredentials: true,
     });
     console.log(res.data);
