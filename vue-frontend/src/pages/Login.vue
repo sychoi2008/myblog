@@ -55,7 +55,7 @@ const submitForm = () => {
       router.push("/home");
     })
     .catch((error) => {
-      console.error("로그인 실패:", error);
+      console.error("login failed:", error);
       alert("ログイン失敗！IDやPASSWORDをご確認ください。");
     });
 };

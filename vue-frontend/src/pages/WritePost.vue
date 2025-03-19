@@ -58,7 +58,7 @@ onMounted(async () => {
       selectedTag.value = resPost.data.tag_id;
     }
   } catch (err) {
-    console.error("데이터 불러오기 실패:", err);
+    console.error("記事読み込み失敗:", err);
   }
 });
 
@@ -88,13 +88,13 @@ const submitPost = () => {
 
   request
     .then((res) => {
-      alert(postId ? "글 수정 성공!" : "글 작성 성공!");
+      alert(postId ? "記事修正成功!" : "記事作成成功!");
       console.log(res.data);
       router.push("/home"); // 작성/수정 후 이동할 경로
     })
     .catch((err) => {
       alert(postId ? "修正失敗!" : "作成失敗!");
-      console.error("글 저장 실패:", err);
+      console.error("writing failed:", err);
     });
 };
 </script>

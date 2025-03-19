@@ -68,7 +68,7 @@ onMounted(async () => {
     console.log(res.data);
     items.value = res.data;
   } catch (err) {
-    console.error("목록 불러오기 실패:", err);
+    console.error("list upload failed:", err);
   }
 });
 
@@ -82,14 +82,14 @@ const logout = () => {
       withCredentials: true,
     })
     .then((response) => {
-      alert("로그아웃 성공!");
+      alert("ログアウト成功!また明日！");
 
       router.replace("/");
     })
     .catch((error) => {
       auth.logout();
-      console.error("로그아웃 실패:", error);
-      alert("로그아웃 실패!");
+      console.error("logout failed:", error);
+      alert("ログアウト失敗!");
     });
 };
 </script>

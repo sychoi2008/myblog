@@ -15,7 +15,7 @@
     </div>
 
     <div v-else>
-      <p>글을 불러오는 중입니다...</p>
+      <p>記事を読み込み中</p>
     </div>
   </main>
 
@@ -36,8 +36,8 @@ const router = useRouter();
 const postId = route.params.id;
 
 /**
-Vue는 onMounted가 실행되면 데이터를 가져오고, 그 데이터가 렌더링되기 전까지는 post가 null일 수도 있어.
-그래서 보통 v-if를 써서 데이터가 도착했을 때만 렌더링하는 패턴을 많이 사용해.
+Vue는 onMounted가 실행되면 데이터를 가져오고, 그 데이터가 렌더링되기 전까지는 post가 null일 수도
+그래서 보통 v-if를 써서 데이터가 도착했을 때만 렌더링하는 패턴을 많이 사용
 **/
 const post = ref(null);
 
