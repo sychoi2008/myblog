@@ -55,7 +55,7 @@ const goToDelete = () => {
       withCredentials: true,
     })
     .then((res) => {
-      alert("글 삭제 성공");
+      alert("記事作成成功");
       router.push("/home"); // 작성/수정 후 이동할 경로
     });
 };
@@ -68,7 +68,7 @@ onMounted(async () => {
     console.log(res.data);
     post.value = res.data;
   } catch (err) {
-    console.error("기본 값 가져오기 실패:", err);
+    console.error("基本の値持っていくの失敗:", err);
   }
 });
 </script>
