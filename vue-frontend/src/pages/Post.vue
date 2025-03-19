@@ -55,7 +55,7 @@ const goToDelete = () => {
       withCredentials: true,
     })
     .then((res) => {
-      alert("記事作成成功");
+      alert("記事削除成功");
       router.push("/home"); // 작성/수정 후 이동할 경로
     });
 };
