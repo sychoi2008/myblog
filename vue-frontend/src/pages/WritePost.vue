@@ -59,6 +59,8 @@ onMounted(async () => {
     }
   } catch (err) {
     console.error("記事読み込み失敗:", err);
+    alert("読み込めませんでした。初期画面に戻ります");
+    router.replace("/");
   }
 });
 
@@ -95,6 +97,7 @@ const submitPost = () => {
     .catch((err) => {
       alert(postId ? "修正失敗!" : "作成失敗!");
       console.error("writing failed:", err);
+      router.replace("/");
     });
 };
 </script>

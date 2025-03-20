@@ -69,6 +69,8 @@ onMounted(async () => {
     items.value = res.data;
   } catch (err) {
     console.error("list upload failed:", err);
+    alert("リストを読み込めませんでした。初期画面に戻ります");
+    router.replace("/");
   }
 });
 
@@ -83,7 +85,7 @@ const logout = () => {
     })
     .then((response) => {
       alert("ログアウト成功!また明日！");
-
+      localStorage.removeItem("pinia_user");
       router.replace("/");
     })
     .catch((error) => {

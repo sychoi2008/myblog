@@ -51,7 +51,8 @@ const submitForm = () => {
     .then((response) => {
       alert("ログイン成功!");
       console.log(response.data);
-      auth.login(response.data.user);
+      localStorage.setItem("pinia_user", JSON.stringify(response.data.user)); // 새로고침하면 다시 pinia도 새로 만들어지니까 저장해야 함. 동기 처리됨
+      auth.login(response.data.user); // 레일즈가 주는 유저 정보를 pinia 저장소에 저장
       router.push("/home");
     })
     .catch((error) => {

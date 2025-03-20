@@ -68,7 +68,9 @@ onMounted(async () => {
     console.log(res.data);
     post.value = res.data;
   } catch (err) {
-    console.error("基本の値持っていくの失敗:", err);
+    console.error("エラー:", err);
+    alert("読み込めませんでした。初期画面に戻ります");
+    router.replace("/");
   }
 });
 </script>
