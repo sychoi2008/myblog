@@ -100,6 +100,12 @@ docker compose exec rails-backend bundle exec rspec
 ![로그아웃](https://github.com/user-attachments/assets/11187947-3c99-4b4d-8387-0fae34809e55)
 ログアウト機能もあります。
 
+### 7. モバイル対応のデザインを適用
+![모바일 홈 화면](https://github.com/user-attachments/assets/7f91717b-e6d2-4ea4-b314-ea3ab88f8438)
+![모바일 글쓰기](https://github.com/user-attachments/assets/202fc7f0-c649-4130-acb1-306012266368)
+
+@mediaを使いレスポンシブデザインを実装しました。
+
 ## 任意で工夫したポイント
 ### 1. Deviseを利用したセッションログイン方式
 - 初期の迅速な開発を考慮して、基本的なDeviseライブラリを使用したセッションログイン方式を採用しました。
